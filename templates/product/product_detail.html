@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block content %}
+<h1>Product Detail</h1>
+{% if product %}
+<div class="product-list">
+  <div class="product-card">
+    <h2>{{ product.name }}</h2>
+    <p class="product-price">${{ product.price }}</p>
+    <p class="product-stock">Stock: {{ product.stock }} units</p>
+    {% if product.description %}
+    <p class="product-description">{{ product.description }}</p>
+    {% endif %}
+    <p><small>Added: {{ product.created_at|date:"M d, Y" }}</small></p>
+  </div>
+</div>
+{% else %}
+<div class="no-products">
+  <p>No products available at the moment.</p>
+</div>
+{% endif %} {% endblock %}

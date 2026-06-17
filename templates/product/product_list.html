@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<h1>Product List</h1>
+
+{% if products %}
+<div class="product-list">
+  {% for product in products %}
+  <div class="product-card">
+    <h2>{{ product.name|escape }}</h2>
+    | truncatewords:5 }}</h2>
+        <a href="{% url 'product:product_detail' product.id %}" class="product-link">View Details</a>
+        <p class="product-price">${{ product.price }}</p>
+    <p class="product-price">${{ product.price }}</p>
+    <p class="product-stock">Stock: {{ product.stock }} units</p>
+    {% if product.description %}
+    <p class="product-description">{{ product.description }}</p>
+    {% endif %}
+    <p><small>Added: {{ product.created_at|date:"M d, Y" }}</small></p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="no-products">
+  <p>No products available at the moment.</p>
+</div>
+{% endif %} {% endblock %}
